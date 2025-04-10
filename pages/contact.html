@@ -5,26 +5,35 @@
     <title>Contact</title>
     <link rel="stylesheet" href="../styles/style.css">
     <script>
-        async function sendEmail() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            try {
-                const mailjet = new Mailjet({
-				  apiKey: process.env.MJ_APIKEY_PUBLIC || 'B6d0e804b12286813413fa7516dbe184',
-				  apiSecret: process.env.MJ_APIKEY_PRIVATE || '25bf045b22b2d5824219e8b970df88a4'
-				});
-
-                if (response.ok) {
-                    alert('Bericht succesvol verzonden!');
-                } else {
-                    alert('Er is iets misgegaan bij het verzenden van het bericht.');
-                }
-            } catch (error) {
-                alert('Kan geen verbinding maken met de server.');
-            }
-        }
+	async function sendEmail() {
+	    const name = document.getElementById('name').value;
+	    const email = document.getElementById('email').value;
+	    const message = document.getElementById('message').value;
+	
+	    try {
+	        // Replace 'YOUR_API_ENDPOINT' with your backend API endpoint
+	        const response = await fetch('YOUR_API_ENDPOINT', {
+	            method: 'POST',
+	            headers: {
+	                'Content-Type': 'application/json',
+	            },
+	            body: JSON.stringify({
+	                name: name,
+	                email: email,
+	                message: message,
+	            }),
+	        });
+	
+	        if (response.ok) {
+	            alert('Bericht succesvol verzonden!');
+	        } else {
+	            alert('Er is iets misgegaan bij het verzenden van het bericht.');
+	        }
+	    } catch (error) {
+	        console.error('Error:', error);
+	        alert('Kan geen verbinding maken met de server.');
+	    }
+	}
     </script>
 </head>
 <body>
