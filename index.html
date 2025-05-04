@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottelare</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <script>
+        function loadPage(page) {
+            document.getElementById('content').src = page;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="./images/kerktoren.png" alt="Kerktoren Bottelare">
+        <h1>Welkom in Bottelare</h1>
+        <h3>Een blik op ons dorp met zijn landelijke karakter</h3>
+    </header>
+
+    <div class="container">
+        <aside>
+            <nav>
+                <a href="#" onclick="loadPage('./pages/geschiedenis.html')">Geschiedenis</a>
+                <a href="#" onclick="loadPage('./pages/nieuws.html')">Nieuws</a>
+                <a href="#" onclick="loadPage('./pages/cultuur.html')">Cultuur</a>
+                <a href="#" onclick="loadPage('./pages/verenigingsleven.html')">Verenigingsleven</a>
+                <a href="#" onclick="loadPage('./pages/kalender.html')">Kalender</a>
+                <a href="#" onclick="loadPage('./pages/wandelingen.html')">Wandelingen</a>
+                <a href="#" onclick="loadPage('./pages/tragewegen.html')">Trage Wegen - Ketskes</a>
+                <a href="#" onclick="loadPage('./pages/handel.html')">Handel</a>
+                <a href="#" onclick="loadPage('./pages/contact.html')">Contact</a>
+            </nav>
+        </aside>
+
+        <main>
+            <iframe id="content" src="./pages/intro.html" style="width:100%; height:600px; border:none;"></iframe>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bottelare</p>
+    </footer>
+</body>
+</html>

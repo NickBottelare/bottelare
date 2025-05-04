@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Handel</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script>
+        async function loadCommerce() {
+            try {
+                const response = await fetch('../data/commerce.json');
+                const data = await response.json();
+                let content = '';
+                data.items.forEach(item => {
+                    content += `<div class='card'>
+                        <h2>${item.title}</h2>
+                        <h3>${item.description}</h3>
+                        <p><strong>Adres:</strong> ${item.address}</p>
+                        <p><strong>Openingsuren:</strong> ${item.hours}</p>
+                        <p><a href="${item.maps}" target="_blank">📍 Bekijk op Google Maps</a></p>`;
+                    if (item.link) {
+                        content += `<p><a href="${item.link}" target="_blank">🌐 Website</a></p>`;
+                    }
+                    content += `</div>`;
+                });
+                document.getElementById('content').innerHTML = content;
+            } catch (error) {
+                document.getElementById('content').innerHTML = '<p>Er is een probleem met het laden van deze pagina.</p>';
+            }
+        }
+        window.onload = loadCommerce;
+    </script>
+</head>
+<body class="pagebody">
+    <main>
+        <div class="card">
+            <h2>Handel</h2>
+            <div id="content">Laden...</div>
+        </div>
+    </main>
+</body>
+</html>

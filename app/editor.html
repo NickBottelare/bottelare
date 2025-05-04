@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>News & Events Editor</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    textarea { width: 100%; height: 100px; }
+    input, button, select { margin: 0.5em 0; display: block; }
+    .entry { border: 1px solid #ccc; padding: 1em; margin: 1em 0; }
+    .section-title { margin-top: 2em; font-size: 1.5em; font-weight: bold; }
+    .map-link { margin-top: 0.5em; display: block; }
+    iframe.map-preview { width: 100%; height: 250px; border: none; margin-top: 0.5em; }
+  </style>
+</head>
+<body>
+  <h1>News & Events Editor</h1>
+
+  <label>Selecteer type:
+    <select id="datasetSelector" onchange="loadData()">
+      <option value="news">Nieuws</option>
+      <option value="events">Evenementen</option>
+      <option value="commerce">Handel</option>
+    </select>
+  </label>
+
+  <div id="entries"></div>
+  <button onclick="addEntry()">Voeg nieuwe entry toe</button>
+  <button onclick="saveToServer()">Opslaan naar server</button>
+
+  <script>
+    let data = { items: [] };
+    let currentType = 'news';
+
+    function loadData() {
+      currentType = document.getElementById('datasetSelector').value;
+      fetch(`../data/${currentType}.json`)
+        .then(response => {
+          if (!response.ok) throw new Error('Kon JSON-bestand niet laden.');
+          return response.json();
+        })
+        .then(json => {
+          data = json;
+          renderEntries();
+        })
+        .catch(error => {
+          console.error('Fout bij laden JSON:', error);
+        });
+    }
+
+    function renderEntries() {
+      const container = document.getElementById('entries');
+      container.innerHTML = '';
+      data.items.forEach((entry, index) => {
+        const div = document.createElement('div');
+        div.className = 'entry';
+
+        let html = `
+          <label>Titel:<br><input value="${entry.title}" onchange="updateEntry(${index}, 'title', this.value)"></label>
+          <label>Omschrijving:<br><textarea onchange="updateEntry(${index}, 'description', this.value)">${entry.description}</textarea></label>
+        `;
+
+        if (currentType === 'news' || currentType === 'events') {
+          html += `<label>Datum:<br><input type="date" value="${entry.date}" onchange="updateEntry(${index}, 'date', this.value)"></label>`;
+        }
+
+        if (currentType === 'events') {
+          html += `<label>Link:<br><input value="${entry.link}" onchange="updateEntry(${index}, 'link', this.value)"></label>`;
+        }
+
+        if (currentType === 'commerce') {
+          const mapsUrl = entry.maps || '';
+          const embedUrl = mapsUrl.replace("https://maps.app.goo.gl/", "https://www.google.com/maps?q=");
+          html += `
+            <label>Adres:<br><input value="${entry.address}" onchange="updateEntry(${index}, 'address', this.value)"></label>
+            <label>Openingsuren:<br><textarea onchange="updateEntry(${index}, 'hours', this.value)">${entry.hours}</textarea></label>
+            <label>Maps-link:<br><input id="maps-${index}" value="${mapsUrl}" onchange="updateEntry(${index}, 'maps', this.value); updateMapLink(${index})"></label>
+            <label>Weblink:<br><input value="${entry.link || ''}" onchange="updateEntry(${index}, 'link', this.value)"></label>
+            <a class="map-link" id="maplink-${index}" href="${mapsUrl}" target="_blank">📍 Bekijk op kaart</a>
+            <iframe id="mapiframe-${index}" class="map-preview" src="${embedUrl}" loading="lazy"></iframe>
+          `;
+        }
+
+        html += `<button onclick="deleteEntry(${index})">Verwijder</button>`;
+        div.innerHTML = html;
+        container.appendChild(div);
+      });
+    }
+
+    function updateMapLink(index) {
+      const input = document.getElementById(`maps-${index}`);
+      const link = document.getElementById(`maplink-${index}`);
+      const iframe = document.getElementById(`mapiframe-${index}`);
+      if (input && link) {
+        link.href = input.value;
+        iframe.src = input.value.replace("https://maps.app.goo.gl/", "https://www.google.com/maps?q=");
+      }
+    }
+
+    function updateEntry(index, field, value) {
+      data.items[index][field] = value;
+    }
+
+    function addEntry() {
+      let newEntry = { title: '', description: '' };
+      if (currentType === 'news' || currentType === 'events') newEntry.date = '';
+      if (currentType === 'events') newEntry.link = '';
+      if (currentType === 'commerce') {
+        newEntry.address = '';
+        newEntry.hours = '';
+        newEntry.maps = '';
+        newEntry.link = '';
+      }
+      data.items.push(newEntry);
+      renderEntries();
+    }
+
+    function deleteEntry(index) {
+      data.items.splice(index, 1);
+      renderEntries();
+    }
+
+    function saveToServer() {
+      fetch(`../data/${currentType}.json`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data, null, 2)
+      })
+      .then(response => {
+        if (!response.ok) throw new Error('Fout bij opslaan naar server');
+        alert('Bestand succesvol opgeslagen op de server.');
+      })
+      .catch(error => {
+        alert('Fout tijdens opslaan: ' + error.message);
+        console.error('Opslaan mislukt:', error);
+      });
+    }
+
+    // Initial load
+    loadData();
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "items": [
+    {
+      "title": "Frituur Sint-Anna",
+      "description": "De lekkerste frituur in de wijde omgeving.",
+      "address": "Koning Albert I-Plein 15, 9820 Merelbeke-Melle",
+      "hours": "Maandag en woensdag: gesloten. Dinsdag, donderdag en zaterdag open van 17:30 tot 21:30 uur, vrijdag open van 11:30 tot 13:30 en van 17 tot 22 uur, zondag open van 18 tot 22 uur .",
+      "maps": "https://maps.app.goo.gl/jQkJMG4Rk3Xpt79T8",
+      "link": "https://www.facebook.com/profile.php?id=100067458974949#"
+    },
+    {
+      "title": "Café De Linde",
+      "description": "Eet- en praatcafé onder de linde",
+      "address": "Koning Albert I-Plein 4, 9820 Merelbeke-Melle",
+      "hours": "Maandag en dinsdag: gesloten. Woensdag en donderdag open van 11 tot 22 uur, vrijdag van 11 tot 1 uur, zaterdag van 14 tot 1 uur en zondag van 10 tot 22 uur.",
+      "maps": "https://maps.app.goo.gl/hEdaA2oTq3V2JTyi8"
+    },
+    {
+      "title": "Café 'T Ketske",
+      "description": "Rustiek wandel-, fiets- en praatcafé",
+      "address": "Maalderij 8, 9820 Merelbeke-Melle",
+      "hours": "Maandag en dinsdag: gesloten. Woensdag, donderdag, vrijdag en zaterdag open van 14 tot 00 uur, zondag open van 10 tot 22 uur.",
+      "maps": "https://maps.app.goo.gl/zvLAoeReSxahN6RZA",
+      "link": "https://www.facebook.com/het.Ketske/?locale2=nl_BE&_rdr"
+    },
+    {
+      "title": "Apotheek Bottelare",
+      "description": "Apotheker",
+      "address": "Koning Albert I-Plein 19, 9820 Merelbeke-Melle",
+      "hours": "Maandag tot vrijdag open van 8:30 tot 12:15 en van 13:45 tot 18:30, zaterdag open van 8:30 tot 12:15.",
+      "maps": "https://maps.app.goo.gl/3rRDsW21PJm72jcW7",
+      "link": "https://bottelare.apotheek.be/"
+    },
+    {
+      "title": "Pontzeele Interieur",
+      "description": "Meubel en Interieurzaak",
+      "address": "Kon. Astridlaan 2, 9820 Merelbeke-Melle",
+      "hours": "Dinsdag tot zaterdag van 10:00 tot 18:00.",
+      "maps": "https://maps.app.goo.gl/363Sh3NgedSp8J4N7",
+      "link": "https://www.pontzeele.be/"
+    }
+  ]
+}

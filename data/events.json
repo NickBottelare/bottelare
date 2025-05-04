@@ -1,0 +1,22 @@
+{
+    "items": [
+        {
+            "title": "Kermis in Bottelare",
+            "date": "2025-06-15",
+            "description": "De jaarlijkse kermis met muziek, attracties en lokale lekkernijen. Locatie: Dorpsplein Bottelare.",
+            "link": ""
+        },
+        {
+            "title": "Wandeltocht langs de trage wegen",
+            "date": "2025-07-10",
+            "description": "Verken de mooiste trage wegen van Bottelare tijdens deze begeleide wandeltocht. Start: 10:00 uur bij de kerk.",
+            "link": "https://www.bottelare.be/wandeltocht"
+        },
+        {
+            "title": "Workshop Bloemschikken",
+            "date": "2025-08-20",
+            "description": "Leer de kunst van bloemschikken met lokale flora. Inschrijven bij de parochiezaal. Tijd: 14:00 - 16:00 uur.",
+            "link": "https://www.bottelare.be/workshop-bloemschikken"
+        }
+    ]
+}

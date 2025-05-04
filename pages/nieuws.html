@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nieuws</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script>
+        async function loadNews() {
+            try {
+                const response = await fetch('../data/news.json');
+                const data = await response.json();
+                let content = '';
+                data.items.forEach(item => {
+                    content += `<div class='card'><h2>${item.title}</h2><p>${item.date}</p><p>${item.description}</p>`;
+                    if (item.link) {
+                        content += `<p><a href='${item.link}' target='_blank'>Meer informatie</a></p>`;
+                    }
+                    content += `</div>`;
+                });
+                document.getElementById('content').innerHTML = content;
+            } catch (error) {
+                document.getElementById('content').innerHTML = '<p>Er is een probleem met het laden van het nieuws.</p>';
+            }
+        }
+        window.onload = loadNews;
+    </script>
+</head>
+
+<body class="pagebody">
+    <main>
+        <div class="card">
+            <h1>Nieuws</h1>
+            <div id="content">Laden...</div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script>
+        async function sendEmail() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            try {
+                const mailjet = new Mailjet({
+				  apiKey: process.env.MJ_APIKEY_PUBLIC || 'B6d0e804b12286813413fa7516dbe184',
+				  apiSecret: process.env.MJ_APIKEY_PRIVATE || '25bf045b22b2d5824219e8b970df88a4'
+				});
+
+                if (response.ok) {
+                    alert('Bericht succesvol verzonden!');
+                } else {
+                    alert('Er is iets misgegaan bij het verzenden van het bericht.');
+                }
+            } catch (error) {
+                alert('Kan geen verbinding maken met de server.');
+            }
+        }
+    </script>
+</head>
+<body class="pagebody">
+    <main>
+        <div class="card">
+            <h1>Contact</h1>
+            <form onsubmit="sendEmail(); return false;">
+                <table>
+                    <tr>
+                        <td><label for="name">Naam:</label></td>
+                        <td><input type="text" id="name" name="naam" placeholder="Uw naam" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="email">E-mail:</label></td>
+                        <td><input type="email" id="email" name="email" placeholder="Uw e-mailadres" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="message">Bericht:</label></td>
+                        <td><textarea id="message" name="bericht" placeholder="Uw bericht" rows="5" required></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right;"><button type="submit">Verstuur</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
