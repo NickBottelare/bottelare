@@ -10,7 +10,6 @@
     .entry { border: 1px solid #ccc; padding: 1em; margin: 1em 0; }
     .section-title { margin-top: 2em; font-size: 1.5em; font-weight: bold; }
     .map-link { margin-top: 0.5em; display: block; }
-    iframe.map-preview { width: 100%; height: 250px; border: none; margin-top: 0.5em; }
   </style>
 </head>
 <body>
@@ -70,14 +69,12 @@
 
         if (currentType === 'commerce') {
           const mapsUrl = entry.maps || '';
-          const embedUrl = mapsUrl.replace("https://maps.app.goo.gl/", "https://www.google.com/maps?q=");
           html += `
             <label>Adres:<br><input value="${entry.address}" onchange="updateEntry(${index}, 'address', this.value)"></label>
             <label>Openingsuren:<br><textarea onchange="updateEntry(${index}, 'hours', this.value)">${entry.hours}</textarea></label>
             <label>Maps-link:<br><input id="maps-${index}" value="${mapsUrl}" onchange="updateEntry(${index}, 'maps', this.value); updateMapLink(${index})"></label>
             <label>Weblink:<br><input value="${entry.link || ''}" onchange="updateEntry(${index}, 'link', this.value)"></label>
             <a class="map-link" id="maplink-${index}" href="${mapsUrl}" target="_blank">📍 Bekijk op kaart</a>
-            <iframe id="mapiframe-${index}" class="map-preview" src="${embedUrl}" loading="lazy"></iframe>
           `;
         }
 
@@ -90,10 +87,8 @@
     function updateMapLink(index) {
       const input = document.getElementById(`maps-${index}`);
       const link = document.getElementById(`maplink-${index}`);
-      const iframe = document.getElementById(`mapiframe-${index}`);
       if (input && link) {
         link.href = input.value;
-        iframe.src = input.value.replace("https://maps.app.goo.gl/", "https://www.google.com/maps?q=");
       }
     }
 
