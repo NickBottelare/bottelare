@@ -2,54 +2,53 @@
     --menu-width: 220px;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Hobo+Std&display=swap");
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f6f1de;
     color: #3e3f5b;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 header {
     background-color: #f6f1de;
     text-align: center;
     padding: 20px;
-    margin: 0;
 }
 
 header img {
     width: 120px;
     height: auto;
-    margin: 0 auto;
 }
 
 header h1,
-header h2,
 header h3,
-.card h1,
-.card h2 {
+main h2 {
     font-family: "Hobo Std", sans-serif;
     font-weight: 700;
     color: #3e3f5b;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Hobo+Std&display=swap");
-
 .container {
     display: flex;
     align-items: flex-start;
-}
-
-iframe#content {
-    width: 100%;
-    height: 600px;
-    border: none;
-    vertical-align: top;
+    padding: 10px;
+    gap: 10px;
 }
 
 aside {
-    background-color: #a5d6a7;
+    background-color: #c8e6c9;
     padding: 10px;
     border-radius: 8px;
     width: var(--menu-width);
+    flex-shrink: 0;
 }
 
 nav {
@@ -63,7 +62,7 @@ nav a {
     font-family: "Hobo Std", sans-serif;
     color: #3e3f5b;
     padding: 8px;
-    background-color: #acd3a7;
+    background-color: #a5d6a7;
     border-radius: 5px;
     transition: 0.3s;
 }
@@ -73,23 +72,44 @@ nav a:hover {
 }
 
 main {
-    padding: 0 10px;
-    flex-grow: 1;
-}
-
-
-.pagebody {
-    margin: 0 10px;
-}
-
-.card {
-    background-color: #acd3a7;
-    padding: 15px;
+    flex: 1;
+    padding: 0;
     margin: 0;
-    border-radius: 8px;
+    background-color: transparent;
+    max-width: none;
+}
+
+main.content {
+    background-color: #d0e8d0;
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px;
+    /* optioneel */
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+iframe#content {
+    width: 100%;
+    min-height: 60vh;
+    border: none;
+    display: block;
+}
+
+body.pagebody {
+    background-color: #d0e8d0;
+    margin: 0;
+}
+
+figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 footer {
     text-align: left;
-    margin: 20px;
+    margin: 40px 20px 20px 20px;
+    color: #3e3f5b;
 }
