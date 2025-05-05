@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <title>Handel</title>
@@ -12,15 +13,12 @@
                 let content = '';
                 data.items.forEach(item => {
                     content += `<div class='card'>
-                        <h2>${item.title}</h2>
-                        <h3>${item.description}</h3>
-                        <p><strong>Adres:</strong> ${item.address}</p>
-                        <p><strong>Openingsuren:</strong> ${item.hours}</p>
-                        <p><a href="${item.maps}" target="_blank">📍 Bekijk op Google Maps</a></p>`;
-                    if (item.link) {
-                        content += `<p><a href="${item.link}" target="_blank">🌐 Website</a></p>`;
-                    }
-                    content += `</div>`;
+                    <h2>${item.title}</h2>
+                    <h3>${item.description}</h3>
+                    <p><strong>Adres:</strong> ${item.address}</p>
+                    <p><strong>Openingsuren:</strong> ${item.hours}</p>
+                    <p><a href="${item.maps}" target="_blank">Bekijk op Google Maps</a></p>
+                </div>`;
                 });
                 document.getElementById('content').innerHTML = content;
             } catch (error) {
@@ -30,12 +28,12 @@
         window.onload = loadCommerce;
     </script>
 </head>
+
 <body class="pagebody">
-    <main>
-        <div class="card">
-            <h2>Handel</h2>
-            <div id="content">Laden...</div>
-        </div>
+    <main class="content">
+        <h2>Handel</h2>
+        <div id="content">Laden...</div>
     </main>
 </body>
+
 </html>
